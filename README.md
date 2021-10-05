@@ -11,7 +11,7 @@
 🟢 Character selection, you will spawn naked after creating char\
 ### Channel Server
 🟠 Portals, Player spawn's in "random" position inside the map when entering portal.\
-🟠 script portals are implemented but they are need to get recoded.
+🟠 script portals are implemented but they are need to get recoded.\
 🔴 Skills\
 🔴 Pets\
 🟠 Inventory operations, implamnted only the basic you can add items but the client will not show them\
