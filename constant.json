@@ -1,0 +1,16 @@
+{
+    "VERSION": 83,
+    "SUB_VERSION": 1, 
+    "LOG_ERROR": false,
+    "WORLD_NAMES": ["Scania", "Bera", "Broa", "Windia", "Khaini", "Bellocan", "Mardia", "Kradia", "Yellonde", "Demethos", "Galicia", "El Nido", "Zenith", "Arcenia", "Kastia", "Judis", "Plana", "Kalluna", "Stius", "Croa", "Medere"],
+    "CHANNELS_TO_LOAD": 5,
+    "AUTO_REGISTER": true,
+    "ENABLE_PIC": false,
+    "PERFECT_PITCH": false,
+    "WORLD_RANKING": false,
+    "EVENTS": "automsg KerningPQ Boats Subway AirPlane elevator",
+    "HOST": "localhost",
+    "DB_USER": "root",
+    "DB_PASS": "",
+    "DB_SELECT": "nodems"
+}

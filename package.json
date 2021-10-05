@@ -1,0 +1,15 @@
+{
+  "name": "nodeMS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Maplestory.js",
+  "scripts": {
+    "servers": "title (*Node.js MapleStory v83 Emulator*) && node MapleStory.js && CMD /k"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "mysql": "^2.18.1"
+  }
+}
