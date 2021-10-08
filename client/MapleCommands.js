@@ -1,7 +1,7 @@
 module.exports = class MapleCommands {
     constructor(client, receivedMessage) {
         this.commandList = new Map();
-        const hasPrefix = receivedMessage.startsWith("!");
+        const hasPrefix = receivedMessage.startsWith("@");
         if (hasPrefix)
             this.processCommand(client, receivedMessage);
     }

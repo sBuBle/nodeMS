@@ -8,7 +8,7 @@ packetHandler.setHandler(0x0031, function (client, reader) {
 	const text = reader.readString();
 	const shouting = reader.readUInt8() !== 0;
 
-	if (text.startsWith("!")) {
+	if (text.startsWith("@")) {
 		new MapleCommandsProccesor(client, text);
 		return;
 	}

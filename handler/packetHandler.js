@@ -38,7 +38,7 @@ module.exports = class packetHandler {
         let filters = filter || '*';
         filters = filters.split(';');
 
-        for (let filter in filters) {
+        for (const filter in filters) {
             let tmp = filters[filter].split('*'); // For things like '*.png' and 'hurr*.txt' (['hurr', '.txt'])
 
             let tmp2 = [];

@@ -106,15 +106,6 @@ const MapleMap = class MapleMap {
             if(portal.name === portalName) return portal;
         }
         return null;
-
-        let returnTrick = null;
-        this.portals.forEach((portal)=>{
-            if(portal.name === portalName){ 
-                returnTrick = portal;
-                return
-            }
-        });
-        return returnTrick;
     }
 
     changeMap(client, map) {
@@ -145,7 +136,7 @@ const MapleMap = class MapleMap {
     }
 
     getEnterMapPacket(client) {
-        let packet = new PacketWriter(0x00A0);
+        const packet = new PacketWriter(0x00A0);
 
         {
             /**
@@ -345,7 +336,7 @@ const MapleMap = class MapleMap {
     }
 
     dropItemFromMapObject(drop, dropfrom, dropto, mod){
-        let packet = new PacketWriter(0x10C);
+        const packet = new PacketWriter(0x10C);
         packet.writeInt8(mod);
         packet.writeInt32(0); // object id.
         packet.writeInt8(drop.getMeso() > 0); // 1 mesos, 0 item, 2 and above all item meso bag,

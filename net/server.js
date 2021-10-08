@@ -8,11 +8,15 @@ module.exports = class Server {
     constructor(name, port = 8484, clients) {
         this.instance = name;
         this.clients = clients;
-        this.connetion = this.tcp().listen(port);
+        this.tcpServer = this.tcp().listen(port);
+    }
+
+    startServer(err) {
+        console.log('test');
     }
 
     tcp() {
-        return net.createServer(socket => {
+        const server = net.createServer(socket => {
             console.log(`[${this.instance}] Got new Connection!`);
 
             // Setup server side client data.
@@ -32,8 +36,7 @@ module.exports = class Server {
             this.clients.set(socket, client);
 
 
-            // Connection with client
-            this.handshake(client, config.VERSION, config.SUB_VERSION, 8); // getHello packet
+            // Client server communication
             Object.entries({
                 data: this.onData,
                 close: this.onClose,
@@ -41,9 +44,12 @@ module.exports = class Server {
                 end: this.onEnd
             }).forEach(([key, handleFunction]) => socket.on(key, handleFunction.bind(this, client)));
         });
+        server.on('connection', this.handshake.bind(this));
+        return server;
     }
 
-    handshake(client, version, subversion, locale) {
+    handshake(socket, version = config.VERSION, subversion = config.SUB_VERSION, locale = 8) {
+        const client = this.clients.get(socket);
         const packet = new PacketWriter(String(subversion).length + 13); // (Hex)0x0E == (decimal)14
         packet.writeUInt16(version);
         packet.writeString(String(subversion));
@@ -61,9 +67,9 @@ module.exports = class Server {
         MaplePacket.push(receivedData);
         while (MaplePacket.isVaildHeader()) {
             const packet = await MaplePacket.getPacket();
-            if (!MaplePacket.isHeader()){
+            if (!MaplePacket.isHeader()) {
                 //console.log(packet);
-                continue; 
+                continue;
             }
             MapleCrypto.decrypt(packet, client.getClientSequence());
             client.setClientSequence(MapleCrypto.morphSequence(client.getClientSequence()));
@@ -71,7 +77,7 @@ module.exports = class Server {
             const reader = new PacketReader(packet);
             const handler = packetHandler.getHandler(reader.readInt16());
             try {
-                handler(client, reader);
+                await handler(client, reader);
             } catch (exception) {
                 console.error('[%s] %s', exception.code, exception.stack);
             }

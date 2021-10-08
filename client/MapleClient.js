@@ -6,7 +6,7 @@
      }
      
      disconnect(reason = ''){
-        console.log(`Disconnecting client.`, reason.length !== 0 ? `$Reason: {reason}` : `not specified reason`);
+        console.log(`Disconnecting client.`, reason.length !== 0 ? `Reason: ${reason}` : `not specified reason`);
         if(typeof this.character !== "undefined" && typeof getMap !== 'undefined'){
             getMap(this.character.getCurrentMapID()).removePlayer(this);
         }
