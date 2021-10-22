@@ -76,19 +76,21 @@ const localServer = class orginizeMapleLogin {
     }
 
     loadAvaibleWorlds() {
-        if (process.argv[2].length < 0) return;
-        const args = process.argv[2].split(',');
-        for (let i = 0, world = 0, port = 0, id = 0; i < args.length; i++) {
-            if ((i % 2) === 1) {
-                port = args[i];
-                this.avaibleWorlds.set(id++, {
-                    worldId: config.WORLD_NAMES.indexOf(world),
-                    worldName: world,
-                    port: Number(port)
-                });
-            } else {
-                world = args[i];
+        const args = process.argv[2].split(',').filter(value => value !== '');
+        if ((args.length % 3) !== 0) throw `[Error] World args size incorrect.`;
+
+        for (let i = 0; i < args.length; i += 3) {
+            const [name, port, pid] = args.slice(i, i + 3);
+            if (!config.WORLD_NAMES.includes(name)) {
+                process.kill(pid);
+                continue;
             }
+
+            this.avaibleWorlds.set(pid, {
+                worldId: config.WORLD_NAMES.indexOf(name),
+                worldName: name,
+                port: port
+            });
         }
     }
 }

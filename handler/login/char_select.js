@@ -1,10 +1,7 @@
 function EnterChannel(client, pCharacterId) {
     const world = client.getWorld();
     let localPort = 7575;
-    for (const {
-            worldId,
-            port
-        } of avaibleWorlds.values()) {
+    for (const {worldId, port} of avaibleWorlds.values()) {
         if (world === worldId) {
             localPort = port;
             break;

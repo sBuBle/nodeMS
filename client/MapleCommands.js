@@ -13,8 +13,8 @@ module.exports = class MapleCommands {
         const args = splitCommand.slice(1);
         this.commandProccess(client, PacketWriter);
         if (this.isExsits(primaryCommand) === false) {
-            const chatMesssasge = client.getPlayer().dropMessage(0, 0, `[command processor] The commnad ${primaryCommand} does not exsits!`);
-            client.getSocket().sendPacket(chatMesssasge);
+            const chatMessasge = client.getPlayer().dropMessage(0, 0, `[command processor] The commnad ${primaryCommand} does not exsits!`);
+            client.getSocket().sendPacket(chatMessasge);
             return;
         }
         this.excuteCommand(primaryCommand)(args);

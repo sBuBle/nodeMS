@@ -221,7 +221,7 @@ const MapleMap = class MapleMap {
              *  Byte (8 bits) - Probably admin flag: GradeCode & 1. Doesn't seem to do anything, tho
              */
             packet.writeUInt16(client.character.stats.job);
-            client.character.addAvatar(packet);
+            client.getPlayer().addAvatar(packet);
             packet.writeUInt32(0);
             packet.writeUInt32(0);
             packet.writeUInt32(0);

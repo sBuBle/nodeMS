@@ -19,7 +19,7 @@ const serverInstance = class serverInstance {
 
     onError(process, data) {
         const processArgs = this.process.get(process).spawnargs[2];
-        if (process.indexOf('login') === -1) process += `.${processArgs[0]}`;
+        if (process.indexOf('login') === -1) process += processArgs[0];
 
         if (config.LOG_ERROR) {
             const localDir = './logs';
@@ -69,4 +69,7 @@ const instance = new serverInstance();
 instance.addProcess('channel', 'Scania', 7575);
 instance.addProcess('channel', 'Bellocan', 7576);
 
-instance.addProcess('login', Array.from(instance.process, ([name, value]) => value.spawnargs[2]));
+instance.addProcess('login', Array.from(instance.process, ([name, value]) => {
+    value.spawnargs[2][2] = value.pid;
+    return value.spawnargs[2];
+}));

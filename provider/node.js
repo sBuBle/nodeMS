@@ -5,8 +5,8 @@ module.exports = class node {
 		this.children = null;
 
 		if (arguments.length == 2) {
-			let nodeOffset = pFile.header.node_offset + (pIndex * 20);
-			let buffer = pFile.readFilePartially(nodeOffset, 20);
+			const nodeOffset = pFile.header.node_offset + (pIndex * 20);
+			const buffer = pFile.readFilePartially(nodeOffset, 20);
 			this.InitFromBuffer(buffer, 0);
 		}
 	}
@@ -22,7 +22,7 @@ module.exports = class node {
 		pOffset += 2;
 
 
-		let buffer = pBuffer.slice(pOffset, pOffset + 8);
+		const buffer = pBuffer.slice(pOffset, pOffset + 8);
 		switch (this.type) {
 			case 0:
 				break;
@@ -52,7 +52,7 @@ module.exports = class node {
 	InitializeChildren() {
 		if (this.child_count == 0 || this.children !== null) return;
 
-		let buffer = this.file.readFilePartially(this.file.header.node_offset + (this.first_child_id * 20), this.child_count * 20);
+		const buffer = this.file.readFilePartially(this.file.header.node_offset + (this.first_child_id * 20), this.child_count * 20);
 
 		this.children = [];
 		for (let i = 0; i < this.child_count; i++) {
@@ -103,7 +103,7 @@ module.exports = class node {
 	GetPath(pPath) {
 		// Searches for the specified path. For example, 'Tips.img/all/0' will go into Tips.img first, then all, then 0
 		// Returns null if any of the nodes were not found
-		let elements = pPath.split('/');
+		const elements = pPath.split('/');
 		let currentNode = this;
 
 		for (let i = 0; i < elements.length; i++) {

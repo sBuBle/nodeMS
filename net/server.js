@@ -11,10 +11,6 @@ module.exports = class Server {
         this.tcpServer = this.tcp().listen(port);
     }
 
-    startServer(err) {
-        console.log('test');
-    }
-
     tcp() {
         const server = net.createServer(socket => {
             console.log(`[${this.instance}] Got new Connection!`);

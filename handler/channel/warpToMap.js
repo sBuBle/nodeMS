@@ -40,10 +40,12 @@ packetHandler.setHandler(0x0014, async function (client, reader) {
             const myEquip = new Set();
             const maskedEquip = new Set();
 
+            /*
             equipedInventory.addItem(1060000, 6); // pants
             equipedInventory.addItem(1072001, 7); // shose
             equipedInventory.addItem(1302000, 11); // weapon
-            
+            */
+
             for (const item of equipedInventory.getItems().values()) {
                 if (item.getPosition() <= -100) {
                     maskedEquip.add(item);
@@ -61,7 +63,6 @@ packetHandler.setHandler(0x0014, async function (client, reader) {
 
             // Equipped items
             for (const item of myEquip.values()) {
-                console.log(item);
                 packet.writeUInt16(Math.abs(item.getPosition()));
                 itm.addItemInfo(item, packet);
             }

@@ -45,7 +45,7 @@ module.exports = class file {
         if (typeof pStart === 'bigint') pStart = Number(pStart);
         if (typeof pLength === 'bigint') pLength = Number(pLength);
 
-        let buf = Buffer.alloc(pLength).fill(0); // Accept negative value.
+        const buf = Buffer.alloc(pLength).fill(0); // Accept negative value.
         if (pLength == 0) return buf;
         fs.readSync(this.fileHandle, buf, 0, pLength, pStart);
         return buf;
@@ -73,9 +73,9 @@ module.exports = class file {
         return this.header.node_count;
     }
     get_string(pIndex) {
-        let offset = this.getOffset(this.header.string_offset, pIndex);
+        const offset = this.getOffset(this.header.string_offset, pIndex);
         let buffer = this.readFilePartially(offset, 2);
-        let length = buffer.readUInt16LE(0);
+        const length = buffer.readUInt16LE(0);
 
         buffer = this.readFilePartially(offset + 2, length);
 
@@ -83,8 +83,8 @@ module.exports = class file {
     }
 
     GetNodeName(pIndex) {
-        let nodeOffset = this.header.node_offset + (pIndex * 20);
-        let buffer = this.readFilePartially(nodeOffset, 4);
+        const nodeOffset = this.header.node_offset + (pIndex * 20);
+        const buffer = this.readFilePartially(nodeOffset, 4);
         return this.get_string(buffer.readUInt32LE(0));
     }
 
