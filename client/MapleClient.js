@@ -131,7 +131,7 @@
                  if (autoRegister === true && results.length === 0) {
                      const hash = await bcrypt.hash(password, 10);
                      await sqlConn.query(`INSERT INTO accounts (username, password) VALUES (${sqlConn.escape(username)}, '${hash}')`);
-                     return resolve(5);
+                     return resolve(23);
                  } else {
                      const isVaildPass = await bcrypt.compare(password, results[0].password);
                      if (!isVaildPass) return resolve(4);

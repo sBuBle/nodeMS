@@ -61,7 +61,7 @@ module.exports = class Server {
         currentSocket.pause();
 
         MaplePacket.push(receivedData);
-        while (MaplePacket.isVaildHeader()) {
+        while (MaplePacket.isStructureCompleted()) {
             const packet = await MaplePacket.getPacket();
             if (!MaplePacket.isHeader()) {
                 //console.log(packet);
@@ -82,14 +82,12 @@ module.exports = class Server {
         currentSocket.resume();
     }
     onClose(client) {
-        console.log(`Connection closed.`);
-        client.disconnect('Socket Operation');
+        client.disconnect(`Connection closed.`);
         this.clients.delete(client.getSocket());
     }
     onError(client, error) {
-        client.disconnect('Socket Operation');
+        client.disconnect(error);
         this.clients.delete(client.getSocket());
-        console.log(`[ERROR]`, error);
     }
 
     onEnd(client) {

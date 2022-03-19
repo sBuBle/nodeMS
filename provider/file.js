@@ -4,36 +4,19 @@ const node = require('./node');
 module.exports = class file {
     constructor(pFilename) {
         this.filename = pFilename;
-        let starttime = process.hrtime();
-
         this.fileHandle = fs.openSync(this.filename, 'rs');
+        this.buffer = this.readFilePartially(0, 4 + ((4 + 8) * 4)); // Read 52 first bits.
 
-        this.buffer = this.readFilePartially(0, 4 + ((4 + 8) * 4));
-
-        if (this.buffer[0] != 0x50 || this.buffer[1] != 0x4B || this.buffer[2] != 0x47 || this.buffer[3] != 0x34) // PKG4
+        const [p, k, g, four] = this.buffer;
+        if (p != 0x50 || k != 0x4B || g != 0x47 || four != 0x34) // PKG4
             throw 'Unsupported Format.';
 
-        let offset = 4;
         this.header = {};
-        this.header.node_count = this.buffer.readUInt32LE(offset);
-        offset += 4;
-        this.header.node_offset = this.getInt64(offset);
-        offset += 8;
-
-        this.header.string_count = this.buffer.readUInt32LE(offset);
-        offset += 4;
-        this.header.string_offset = this.getInt64(offset);
-        offset += 8;
-
-        this.header.bitmap_count = this.buffer.readUInt32LE(offset);
-        offset += 4;
-        this.header.bitmap_offset = this.getInt64(offset);
-        offset += 8;
-
-        this.header.audio_count = this.buffer.readUInt32LE(offset);
-        offset += 4;
-        this.header.audio_offset = this.getInt64(offset);
-        offset += 8;
+        let offset = 4;
+        ['node_count', 'node_offset', 'string_count', 'string_offset', 'bitmap_count', 'bitmap_offset', 'audio_count', 'audio_offset'].forEach((key, i) => {
+            this.header[key] = ((i % 2) === 0) ? this.buffer.readUInt32LE(offset) : this.getInt64(offset);
+            offset += ((i % 2) === 0) ? 4 : 8;
+        });
 
         this.mainNode = new node(this, 0);
     }

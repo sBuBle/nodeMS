@@ -20,7 +20,7 @@ module.exports = class MaplePacket {
         return this._packet;
     }
 
-    isVaildHeader() {
+    isStructureCompleted() {
         return this._blockLength <= this._buffer.length;
     }
 
