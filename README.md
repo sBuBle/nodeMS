@@ -1,42 +1,40 @@
-## What currently implemented:
-🔴Not implemented yet 🟠Partly implemented 🟢Implemented
+## Current Implementation Status:
 
 ### Login Server
-🟢 Client login + Auto registretion.\
-🟢 World selection\
-🟢 Multiworld implemented, that means you can choose which world will be showen on world list.\
-🟠 Channel selection, you will be on the world port of the world basicly there only one channel.\
-🟢 Character creation, you will spawn naked after creating char\
-🟢 Character deletion\
-🟢 Character selection, you will spawn naked after creating char\
+🟢 Client login and automatic registration.\
+🟢 World selection feature.\
+🟢 Multiworld functionality allowing users to choose displayed worlds.\
+🟠 Partial implementation of channel selection. Players spawn on the default channel.\
+🟢 Character creation with spawning in a basic state.\
+🟢 Character deletion capability.\
+🟢 Character selection with spawning in a basic state.
+
 ### Channel Server
-🟠 Portals, Player spawn's in "random" position inside the map when entering portal.\
-🟠 script portals are implemented but they are need to get recoded.\
-🔴 Skills\
-🔴 Pets\
-🟠 Inventory operations, implamnted only the basic you can add items but the client will not show them\
-🟠 Player equipment - you can see others wearable equipment but not your own\
-🟠 Monster Spawn, but they have no skills (means they cant attack you or hurt)\
-🟢 NPC spawn/dialog/selection/life\
-🔴 Character info, on click/press character information.\
-🔴 Cashshop.\
-🔴 Guild/Party/Trade/Friends operations\
-🟢 Supporting Nx file foramt reading\
-🟠 Player chat, you can speek with other players and use commands, only public chat implemented.\
-🟢 Multiplayer, working but still may have bugs when changing map.\
-🟠 Player emotes, you can use only the basic/default emotes.\
-🔴 What not mentioned probably not implemented too.
+🟠 Portals functionality: Players spawn in a "random" position within the map upon entering portals.\
+🟠 Script portals are implemented but require recoding.\
+🔴 Skills system not yet implemented.\
+🔴 Pets feature not implemented.\
+🟠 Basic inventory operations implemented, although items may not display correctly to the client.\
+🟠 Player equipment display implemented for other players, but not for the player's own equipment.\
+🟠 Monster spawn feature enabled, but monsters lack skills and cannot attack or cause harm.\
+🟢 NPCs spawn, with dialogue, selection, and lifelike behavior.\
+🔴 Character info functionality not implemented.\
+🔴 Cash shop feature not implemented.\
+🔴 Guild, party, trade, and friends operations are not yet available.\
+🟢 Support for Nx file format reading.\
+🟠 Player chat feature enabled for public communication and commands, with only public chat implemented.\
+🟢 Multiplayer functionality working, though may have bugs when changing maps.\
+🟠 Basic player emotes available, limited to default options.
 
-# Setup/install emulator
-Edit `constant.js` to your needs;\
-To run this maplestory emulator, you have to do the following steps:
-1) Firstly you have to install mysql server(wamp/xamp), and import there mysql file named `nodems.sql`.
-2) Secondly you have to convert you'rs wz files to nx format and place you'rs nx format files inside path -> `provider` ->> `nx`.\
-    you can get nx format converter tool from diamondo25 - [WZ to NX](https://github.com/diamondo25/Maple.js/tree/master/tools/WZ2NX). 
-3) Ofcourse you have to get localhost/client/redirector and locate him inside your maplestory folder to start a new connection with this emulator. Please dont forget to change ip inside your's localhost/client/redirector, you can change them by using diamondo25 tool - [strEdit (direct download)](http://direct.craftnet.nl/app_updates/STREDIT.zip).
-4) Without `node.js` engine you will not able to launch this emulator at all, so you have download and install `node.js` - [redirect to nodejs website](https://nodejs.org/en/).
-5) Open file named `launch_servers.cmd` to launch the emulator. if you will not have node modules he will automaticly install them, after the node modules installetion you will have to close the `cmd` file and reopen him to launch emulator.
+## Emulator Setup Instructions:
+To set up and install the MapleStory emulator, follow these steps:
 
-## Credits
-* diamondo25 - for publiching his [Maple.js](https://github.com/diamondo25/Maple.js) maplestory emulator.
-* Nexon - for creating maplestory at all.
+1. Install a MySQL server (such as WAMP or XAMPP) and import the provided MySQL file named `nodems.sql`.
+2. Convert WZ files to NX format using a tool like diamondo25's WZ to NX converter. Place the NX format files in the specified directory (`provider` -> `nx`).
+3. Place the localhost/client/redirector files in your MapleStory folder, ensuring to update the IP address as necessary using diamondo25's tool, strEdit.
+4. Install Node.js from the official website.
+5. Open the `launch_servers.cmd` file to start the emulator. If necessary, it will install required node modules. After module installation, close and reopen the file to launch the emulator.
+
+## Credits:
+* diamondo25 - for creating the Maple.js emulator.
+* Nexon - for developing MapleStory.
